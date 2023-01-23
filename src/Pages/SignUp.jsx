@@ -1,15 +1,25 @@
 import React, { useState } from 'react';
 import { AiFillLock, AiOutlineMail } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
+import { UserAuth } from "../Context/AuthContext"; 
+
 export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const {signUp}=UserAuth()
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault()//prevent the site from reloading when authenticating
     setError('')
+    try {
+      await signUp(email,password)
+      navigate('/account')
+    } catch (e) {
+      setError(e.message)
+      console.log(e.message)
+    }
     
   }
   return (

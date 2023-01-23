@@ -10,6 +10,7 @@ import CoinPage from "./Pages/CoinPage";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Footer from "./Components/Footer";
+import { AuthContextProvider } from "./Context/AuthContext";
 
 function App() {
   const [coins, setCoins] = useState([]);
@@ -24,6 +25,8 @@ function App() {
   return (
     // Surrounding the whole app with the Theme Provider context so that we can use our context anywhere in the app
     <ThemeProvider>
+      <AuthContextProvider>
+
       <NavBar />
       {/* Routes from react router dom */}
       <Routes>
@@ -36,6 +39,7 @@ function App() {
         </Route>
       </Routes>
       <Footer/>
+      </AuthContextProvider>
     </ThemeProvider>
   );
 }

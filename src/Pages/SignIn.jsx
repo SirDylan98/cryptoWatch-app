@@ -1,16 +1,26 @@
 import React, { useState } from "react";
 import { AiOutlineMail,AiFillLock } from "react-icons/ai";
 import { useNavigate, Link } from "react-router-dom";
+import { signIn,UserAuth } from "../Context/AuthContext"; 
+import { signInAnonymously } from "firebase/auth";
 
 export default function SignIn() {
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-
-  const handleSubmit=(e)=>{
+  const{signIn}=UserAuth();
+  const handleSubmit=async(e)=>{
     e.preventDefault();
     setError('');
+    try{
+      await signIn(email,password)
+      navigate('/account')
+    }catch(e){
+      setError(e.message)
+      console.log(e.message)
+    }
   }
   
   return (
@@ -40,7 +50,7 @@ export default function SignIn() {
             <AiFillLock className='absolute right-2 top-3 text-gray-400' />
           </div>
         </div>
-        <button className='w-full my-2 p-3 bg-button text-btnText rounded-2xl shadow-xl'>
+        <button onClick={handleSubmit} className='w-full my-2 p-3 bg-button text-btnText rounded-2xl shadow-xl'>
           Sign in
         </button>
       </form>

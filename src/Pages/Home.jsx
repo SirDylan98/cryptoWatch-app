@@ -8,7 +8,7 @@ export default function Home(props) {
     <div className="mt-4">
       <CoinSearch coins={props.coins} />
       <Trending/>
-      <Footer/>
+     
     </div>
   );
 }
