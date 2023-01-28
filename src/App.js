@@ -13,7 +13,7 @@ import Footer from "./Components/Footer";
 import { AuthContextProvider } from "./Context/AuthContext";
 
 function App() {
-  const [coins, setCoins] = useState([]);
+  const [coins, setCoins] = useState([]);// setting the state of the coins to an empty array
   const url =
     "https://api.coingecko.com/api/v3/coins/markets?vs_currency=zar&order=market_cap_desc&per_page=10&page=1&sparkline=true";
   useEffect(() => {
@@ -21,9 +21,9 @@ function App() {
       setCoins(response.data);
       console.log(response.data);
     });
-  }, [url]);
+  }, [url]); // setting the dependency array to have url so that whenever the value of url changes use effect is fired
   return (
-    // Surrounding the whole app with the Theme Provider context so that we can use our context anywhere in the app
+    // Surrounding the whole app with the Theme Provider context so that we can use our context anywhere in the app | Cross cutting Concerns
     <ThemeProvider>
       <AuthContextProvider>
 

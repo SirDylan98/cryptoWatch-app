@@ -30,7 +30,7 @@ const Navbar = () => {
       <div className='hidden md:block'>
         <ThemeToggle />
       </div>
-
+{/* the ? was used to indicate that this is an optional fill so it might return null */}
       {user?.email ? (
         <div>
           <Link to='/account' className='p-4'>

@@ -3,7 +3,7 @@ import { AiOutlineStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { Sparklines, SparklinesLine, SparklinesBars } from "react-sparklines";
 
-export default function CoinItem({ coin }) {
+export default function CoinItem({ coin }) { /// used destructing of props 
   return (
     <tr className="h-[80px] border-b overflow-hidden">
       <td>
@@ -11,6 +11,7 @@ export default function CoinItem({ coin }) {
       </td>
       <td>{coin.market_cap_rank}</td>
       <td>
+        {/* Use string literal to get a dynamic link */}
         <Link to={`/coin/${coin.id}`}>
         <div className="flex items-center">
           <img
